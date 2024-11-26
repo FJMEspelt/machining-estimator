@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Entrenar Modelo</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Entrenamiento del Modelo</h1>
+        <form action="/train" method="post">
+            <label for="model">Selecciona el Modelo de ML:</label>
+            <select id="model" name="model" required>
+                <option value="linear_regression">Linear Regression</option>
+                <option value="random_forest">Random Forest</option>
+                <option value="svm">Support Vector Machine (SVM)</option>
+            </select>
+            <button type="submit">Entrenar Modelo</button>
+        </form>
+        {% if error %}
+            <p style="color: red;">Error: {{ error }}</p>
+        {% endif %}
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        <a href="/">Volver</a>
+    </div>
+</body>
+</html>

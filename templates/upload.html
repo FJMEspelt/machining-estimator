@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subir Datos</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Subir Archivo CSV</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Subir</button>
+        </form>
+        {% if message %}
+            <p>{{ message }}</p>
+            {{ data | safe }}
+        {% endif %}
+        <a href="/">Volver</a>
+    </div>
+</body>
+</html>

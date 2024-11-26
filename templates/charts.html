@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visualización de Gráficos</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Visualización de Gráficos</h1>
+
+        <!-- Matriz de Correlación -->
+        <h3>Matriz de Correlación</h3>
+        {% if correlation_chart_path %}
+            <img src="/{{ correlation_chart_path }}" alt="Matriz de Correlación">
+        {% else %}
+            <p>No se pudo generar la matriz de correlación. Verifica los datos cargados.</p>
+        {% endif %}
+
+        <!-- Comparación de Nota Estimada vs Dificultad -->
+        <h3>Comparación de Nota Estimada vs Dificultad</h3>
+        {% if comparison_chart_path and mae is not none %}
+            <p><strong>Error Medio Absoluto (MAE):</strong> {{ mae }}</p>
+            <img src="/{{ comparison_chart_path }}" alt="Comparación de Nota Estimada vs Dificultad">
+        {% else %}
+            <p>No se pudo generar la comparación. Verifica que las columnas necesarias estén presentes.</p>
+        {% endif %}
+
+        <a href="/">Volver</a>
+    </div>
+</body>
+</html>

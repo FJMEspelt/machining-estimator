@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predicciones</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hacer Predicciones</h1>
+        <form action="/predict" method="post">
+            <label>Material:</label>
+            <input type="text" name="Material" required>
+            <label>Volumen:</label>
+            <input type="number" name="Volumen" required>
+            <label>Nota Estimada:</label>
+            <input type="number" name="nota_estimada" step="0.01" required>
+            <button type="submit">Predecir</button>
+        </form>
+        {% if prediction %}
+            <p>Predicción: {{ prediction }}</p>
+        {% endif %}
+        <a href="/">Volver</a>
+    </div>
+</body>
+</html>

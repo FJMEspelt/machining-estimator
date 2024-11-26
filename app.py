@@ -4,6 +4,7 @@ from data_processing.preprocess import load_data, preprocess_data
 from models.train import train_model
 from models.predict import predict_new_data
 from visualizations.charts import create_charts
+from data_processing.preprocess import remove_outliers
 
 app = Flask(__name__)
 
@@ -110,6 +111,30 @@ def predict():
         predictions = predict_new_data(model, new_data, X_columns)
         return render_template('predict.html', prediction=predictions[0])
     return render_template('predict.html')
+
+@app.route('/remove_outliers', methods=['POST'])
+def remove_outliers_route():
+    """
+    Elimina los outliers de los datos cargados y muestra qué filas fueron eliminadas.
+    """
+    global df_preprocessed
+
+    if df_preprocessed is None:
+        return redirect(url_for('index'))
+
+    # Aplicar la eliminación de outliers
+    df_cleaned, outliers = remove_outliers(df_preprocessed)
+
+    # Actualizar los datos preprocesados
+    df_preprocessed = df_cleaned
+
+    # Guardar los datos limpios en un archivo temporal
+    df_preprocessed.to_csv('data/cleaned_data.csv', index=False)
+
+    return render_template('visualize.html', 
+                           data=df_preprocessed.to_html(classes="table table-striped"), 
+                           message=f"Se han eliminado {len(outliers)} filas como outliers.",
+                           outliers=outliers.to_html(classes="table table-striped") if not outliers.empty else None)
 
 
 if __name__ == '__main__':

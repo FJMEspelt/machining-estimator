@@ -1,14 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizar Datos</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Datos Cargados</h1>
-        {{ data | safe }}
-        <a href="/">Volver</a>
+        <h1>Visualizar Datos</h1>
+
+        <!-- Tabla de datos cargados -->
+        <h2>Datos Cargados</h2>
+        <div class="table-container">
+            {{ data|safe }}
+        </div>
+
+        <!-- Mensaje informativo si existe -->
+        {% if message %}
+            <div class="alert alert-info" style="margin-top: 20px;">
+                <p><strong>{{ message }}</strong></p>
+            </div>
+        {% endif %}
+
+        <!-- Tabla de datos eliminados como outliers -->
+        {% if outliers %}
+            <h3>Datos Eliminados (Outliers)</h3>
+            <div class="table-container">
+                {{ outliers|safe }}
+            </div>
+        {% endif %}
+
+        <!-- Botón para eliminar outliers -->
+        <form action="/remove_outliers" method="POST" style="margin-top: 20px;">
+            <button type="submit" class="btn btn-warning">Eliminar Outliers</button>
+        </form>
+
+        <!-- Botón para regresar a la página principal -->
+        <a href="/" class="btn btn-secondary" style="margin-top: 20px;">Volver</a>
     </div>
 </body>
 </html>

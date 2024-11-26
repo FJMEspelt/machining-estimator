@@ -27,6 +27,7 @@ app/
 │   └── charts/                # Carpeta para guardar gráficos generados
 └── data/
     └── AnalisisPlanos.csv     # Archivo de datos inicial (opcional)
+```
 
 Características
     Carga de Datos: Subida de archivos CSV para análisis.

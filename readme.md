@@ -1,8 +1,9 @@
 Estimador de Tiempo de Mecanizado
 Esta aplicación Flask permite analizar, preprocesar, visualizar datos y realizar predicciones relacionadas con la eficiencia en mecanizado. Proporciona una interfaz para cargar datos, entrenar modelos de Machine Learning y generar gráficos interactivos.
 
-Estructura del Proyecto
+## **Estructura del Proyecto**
 
+```plaintext
 app/
 ├── app.py
 ├── models/
@@ -18,7 +19,7 @@ app/
 │   ├── index.html             # Página principal
 │   ├── predict.html           # Página de predicción
 │   ├── train.html             # Página de entrenamiento
-│   ├── upload.html              # Página de subida de datos
+│   ├── upload.html            # Página de subida de datos
 │   ├── visualize.html         # Página de visualización de datos
 ├── static/
 │   ├── css/

@@ -1,5 +1,5 @@
-Estimador de Tiempo de Mecanizado
-Esta aplicación Flask permite analizar, preprocesar, visualizar datos y realizar predicciones relacionadas con la eficiencia en mecanizado. Proporciona una interfaz para cargar datos, entrenar modelos de Machine Learning y generar gráficos interactivos.
+## **Machining Time Estimator**
+This Flask application allows for analyzing, preprocessing, visualizing data, and making predictions related to machining efficiency. It provides an interface for uploading data, training Machine Learning models, and generating interactive charts.
 
 ## **Estructura del Proyecto**
 
@@ -7,103 +7,134 @@ Esta aplicación Flask permite analizar, preprocesar, visualizar datos y realiza
 app/
 ├── app.py
 ├── models/
-│   ├── train.py               # Entrenamiento de modelos de ML
-│   ├── evaluate.py            # Evaluación de modelos (opcional)
-│   └── predict.py             # Predicciones usando modelos entrenados
+│   ├── train.py               # ML models training
+│   ├── evaluate.py            # ML models evalutation
+│   └── predict.py             # Predictions using trained models
 ├── data_processing/
-│   └── preprocess.py          # Preprocesamiento de datos
+│   └── preprocess.py          # Preprocessing of data
 ├── visualizations/
-│   └── charts.py              # Generación de gráficos
+│   └── charts.py              # Graphics generation
 ├── templates/
-│   ├── charts.html            # Página para visualizar gráficos
-│   ├── index.html             # Página principal
-│   ├── predict.html           # Página de predicción
-│   ├── train.html             # Página de entrenamiento
-│   ├── upload.html            # Página de subida de datos
-│   ├── visualize.html         # Página de visualización de datos
+│   ├── charts.html            # Page to visualize data
+│   ├── index.html             # Main page
+│   ├── predict.html           # Prediction Page
+│   ├── train.html             # Training page
+│   ├── upload.html            # Data uploading page
+│   ├── visualize.html         # Data visualization page
 ├── static/
 │   ├── css/
-│   │   └── style.css          # Estilos CSS para la aplicación
-│   └── charts/                # Carpeta para guardar gráficos generados
+│   │   └── style.css          # CSS Style
+│   └── charts/                # Folder to save generated data
 └── data/
-    └── AnalisisPlanos.csv     # Archivo de datos inicial (opcional)
+    └── AnalisisPlanos.csv     # Data file 
 ```
 
-Características
-    Carga de Datos: Subida de archivos CSV para análisis.
-    Preprocesamiento: Limpieza y transformación automática de datos cargados.
-    Entrenamiento de Modelos: Entrena modelos de Machine Learning (Linear Regression, Random Forest, SVM).
-    Visualización de Gráficos:
-        Matriz de correlación.
-        Comparación de Nota Estimada vs Dificultad.
-    Predicción: Realiza predicciones usando modelos entrenados.
+## **Features**
 
-Instalación
+- **Data Upload:** Upload CSV files for analysis.
+- **Preprocessing:** Automatic cleaning and transformation of uploaded data.
+- **Model Training:** Train Machine Learning models (Linear Regression, Random Forest, SVM).
+- **Chart Visualization:**
+  - Correlation matrix.
+  - Comparison of Estimated Grade vs Difficulty.
+- **Prediction:** Make predictions using trained models.
 
-Clona este repositorio:
-    git clone https://github.com/usuario/estimador-mecanizado.git
-    cd estimador-mecanizado/app
+---
 
-Instala las dependencias necesarias:
+## **Installation**
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/FJMEspelt/machining-estimator
+   cd estimador-mecanizado/app
+
+2. Install required dependencies
     pip install -r requirements.txt
 
-Coloca tu archivo de datos inicial en data/AnalisisPlanos.csv.
+3. Place your initial data file in data/AnalisisPlanos.csv.
 
-Uso
-Ejecuta la aplicación Flask:
-    python app.py
+## **Usage**
 
-Abre el navegador y accede a:
-    http://127.0.0.1:5000
+### **Run the Flask application:**
 
-Flujo Principal:
+```bash
+python app.py
+Open your browser and go to:
 
-    Visualizar Datos: Navega a /visualize para ver los datos cargados.
-    Subir Datos: Ve a /upload para cargar un nuevo archivo CSV.
-    Entrenar Modelos: Selecciona y entrena un modelo en /train.
-    Visualizar Gráficos: Genera gráficos desde /visualization/charts.
-    Predicciones: Realiza predicciones desde /predict.
+http://127.0.0.1:5000
+```
 
-Requisitos
-    Python: >= 3.8
+## **Main Workflow:**
 
-Bibliotecas:
-    Flask
-    pandas
-    numpy
-    matplotlib
-    seaborn
-    scikit-learn
+- **View Data:** Navigate to `/visualize` to see the loaded data.
+- **Upload Data:** Go to `/upload` to upload a new CSV file.
+- **Train Models:** Select and train a model at `/train`.
+- **Visualize Charts:** Generate charts at `/visualization/charts`.
+- **Make Predictions:** Perform predictions at `/predict`.
 
-Funciones Modulares:
+---
 
-1. Preprocesamiento (data_processing/preprocess.py)
-    Carga y transforma datos para análisis y modelos de ML.
+## **Requirements**
 
-2. Entrenamiento de Modelos (models/train.py)
-Entrena modelos como Linear Regression, Random Forest y SVM.
+- **Python:** >= 3.8
 
-3. Predicciones (models/predict.py)
-Realiza predicciones basadas en datos ingresados.
+### **Libraries:**
 
-4. Gráficos (visualizations/charts.py)
-Genera gráficos como la matriz de correlación y comparaciones.
+- Flask  
+- pandas  
+- numpy  
+- matplotlib  
+- seaborn  
+- scikit-learn
 
-Capturas de Pantalla
+Modular Functions:
 
-    Página Principal
+Preprocessing (data_processing/preprocess.py):
+Load and transform data for analysis and ML models.
 
-    Gráficos Generados
+## **Modular Functions**
 
-Mejoras Futuras
-    Implementar más modelos de Machine Learning.
-    Agregar validaciones avanzadas para los datos cargados.
-    Mejorar la interfaz gráfica con frameworks como Bootstrap.
+1. **Preprocessing (`data_processing/preprocess.py`):**
+   - Load and transform data for analysis and ML models.
 
-Licencia
-    Este proyecto está bajo la Licencia MIT. Puedes usar, modificar y distribuir libremente.
+2. **Model Training (`models/train.py`):**
+   - Train models such as Linear Regression, Random Forest, and SVM.
 
-Contacto
-    Si tienes alguna pregunta o sugerencia, no dudes en contactarme:
+3. **Predictions (`models/predict.py`):**
+   - Make predictions based on user input.
 
-Email: javiespelt@gmail.com
+4. **Charts (`visualizations/charts.py`):**
+   - Generate charts like the correlation matrix and comparisons.
+
+---
+
+## **Screenshots**
+
+- **Main Page**  
+  *(Insert screenshot here)*
+
+- **Generated Charts**  
+  *(Insert screenshot here)*
+
+---
+
+## **Future Improvements**
+
+- Implement more Machine Learning models.
+- Add advanced validations for uploaded data.
+- Enhance the graphical interface using frameworks like Bootstrap.
+
+---
+
+## **License**
+
+This project is under the MIT License. You can freely use, modify, and distribute it.
+
+---
+
+## **Contact**
+
+If you have any questions or suggestions, feel free to contact me:
+
+- **Email:** javiespelt@gmail.com
+

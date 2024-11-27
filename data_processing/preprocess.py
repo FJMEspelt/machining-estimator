@@ -39,34 +39,41 @@ def nota_estimada(material, tolerancia, volumen, operaciones):
     
     return nota_estimada
 
-def remove_outliers(df, column_list=None):
+def remove_outliers(df):
     """
-    Elimina outliers de las columnas numéricas seleccionadas usando el método IQR.
-    :param df: DataFrame con los datos.
-    :param column_list: Lista de columnas donde buscar outliers. Si es None, se procesan todas las columnas numéricas.
+    Elimina outliers basándose únicamente en las columnas 'Volumen' y 'Tiempo preparacion + mecanizado'
+    usando el método IQR (Interquartile Range).
+    
+    :param df: DataFrame con los datos originales.
     :return: DataFrame limpio y un DataFrame con los outliers eliminados.
     """
-    if column_list is None:
-        column_list = df.select_dtypes(include=['float64', 'int64']).columns
-
+    # Verificar si las columnas necesarias están presentes en el DataFrame
+    required_columns = ['Volumen', 'Tiempo preparacion + mecanizado']
+    for column in required_columns:
+        if column not in df.columns:
+            raise ValueError(f"La columna requerida '{column}' no está en el DataFrame.")
+    
     df_cleaned = df.copy()
     outliers = pd.DataFrame()
 
-    for column in column_list:
-        if column not in df_cleaned.columns:
-            continue
-
+    for column in required_columns:
+        # Calcular el rango intercuartílico (IQR)
         q1 = df_cleaned[column].quantile(0.25)
         q3 = df_cleaned[column].quantile(0.75)
         iqr = q3 - q1
 
+        # Definir límites superior e inferior
         lower_bound = q1 - 1.5 * iqr
         upper_bound = q3 + 1.5 * iqr
 
+        # Identificar los outliers en la columna actual
         outliers_in_column = df_cleaned[(df_cleaned[column] < lower_bound) | (df_cleaned[column] > upper_bound)]
         outliers = pd.concat([outliers, outliers_in_column])
 
-        # Eliminar outliers de la columna
+        # Filtrar el DataFrame eliminando los outliers de la columna actual
         df_cleaned = df_cleaned[(df_cleaned[column] >= lower_bound) & (df_cleaned[column] <= upper_bound)]
+
+    # Eliminar duplicados de los outliers recopilados (pueden aparecer en ambas columnas)
+    outliers = outliers.drop_duplicates()
 
     return df_cleaned, outliers
